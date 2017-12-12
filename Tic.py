@@ -42,21 +42,21 @@ class Tic():
         rD = self.board[0][0]
         cD = np.rot90(self.board)[0][0]
 
-        for i in range(len(self.board)):
-            r = self.board[i]
-            c = np.rot90(self.board)[i]
+        for i in range(len(self.board)): #For each row
+            r = self.board[i] #Row
+            c = np.rot90(self.board)[i] #Column
 
             rFound = False
             rLastE = r[0]
             cFound = False
             cLastE = c[0]
 
-            if r[i] != rD or r[i] == 0:
+            if r[i] != rD or r[i] == 0: #Check Diagonals
                 rDFound = True
             if c[i] != cD or c[i] == 0:
                 cDFound = True
 
-            for j in range(len(r)):
+            for j in range(len(r)): #For each item in the row/column
                 rE = r[j]
                 cE = c[j]
 
@@ -65,7 +65,7 @@ class Tic():
                 if rE == 0.0:
                     amDone = False
 
-                if cE != cLastE or rE == 0:
+                if cE != cLastE or cE == 0:
                     cFound = True
 
             if not rFound:

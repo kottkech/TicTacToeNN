@@ -23,7 +23,7 @@ def play():
 
     i = 0
 
-    ai = 1 #0 is x, 1 is o
+    ai = 0 #0 is x, 1 is o
 
     agent = -1 * (ai * 2 - 1)
 
@@ -40,10 +40,15 @@ def play():
             board.play(agent, loc)
         else:
             board.print()
-            text = input("Please enter play position 'row,column': ")
-            loc = text.split(',')
-            loc[0] = int(loc[0])
-            loc[1] = int(loc[1])
+            validPlay = False
+            while not validPlay:
+                text = input("Please enter play position 'row,column': ")
+                loc = text.split(',')
+                loc[0] = int(loc[0])
+                loc[1] = int(loc[1])
+                validPlay = board.valid(loc)
+                if not validPlay:
+                    print("INVALID PLAY: Please choose another position")
             board.play(-1 * agent, loc)
 
         output = board.done()
@@ -66,5 +71,5 @@ def train():
     RL.train(False,nn)
 
 
-#play()
-train()
+play()
+#train()

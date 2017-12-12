@@ -54,7 +54,7 @@ def updateTarget(op_holder, sess):
         sess.run(op)
 
 def train(load,nn):
-    numEps = 200000
+    numEps = 20000
 
     size = int(nn.struct[-1] ** (1/2))
 
@@ -153,7 +153,7 @@ def train(load,nn):
 
                         updateTarget(targetOps,sess)
 
-            if i % 1000 == 0 and len(myBuffer.buffer) > batchSize:
+            if i % 100 == 0 and len(myBuffer.buffer) > batchSize:
                 if counter > 0:
                     print(str(i) + ", " + str(avgLoss / counter))
                 else:
