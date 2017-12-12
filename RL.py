@@ -4,7 +4,8 @@ import Tic
 import numpy as np
 
 class RL():
-    def __init__(self, struct):
+    def __init__(self, struct, name):
+        self.name = name
         self.struct = struct
         self.build(struct)
 
@@ -58,7 +59,7 @@ def train(load,nn):
 
     size = int(nn.struct[-1] ** (1/2))
 
-    path = "./nns"
+    path = "./nns/"
 
     batchSize = 32
     updateFreq = 1
@@ -160,7 +161,7 @@ def train(load,nn):
                     print(str(i) + ", 0.0")
 
             if i % 1000 == 0:
-                saver.save(sess,path+"/model"+str(size)+"-"+str(i)+".ckpt")
+                saver.save(sess,path+nn.name+str(size)+"-"+str(i)+".ckpt")
 
             myBuffer.add(epBuff.buffer)
 
